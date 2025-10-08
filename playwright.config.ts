@@ -40,6 +40,10 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'setup',
+      use: {}
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
@@ -79,7 +83,7 @@ export default defineConfig({
   webServer: {
     command: 'docker compose up --build',
     port: 4100,
-    url: 'http://localhost:4100',
+    //url: 'http://localhost:4100',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },
