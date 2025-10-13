@@ -23,6 +23,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4 # Check out the repository
     
+    - name: Clone backend repo
+      run: git clone https://github.com/aleksandra-krstin/node-express-realworld-example-app.git ../backend
+
+    - name: Clone frontend repo
+      run: git clone https://github.com/aleksandra-krstin/react-redux-realworld-example-app.git ../frontend
+
     - uses: actions/setup-node@v4 # Set up Node.js
       with:
         node-version: lts/*
