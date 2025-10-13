@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 
+test.use({ storageState: undefined });
 
 test('login with valid credentials', async ({ request }) => {
 
-    const response = await request.post('http://localhost:3001/api/users/login', {
+    const response = await request.post(`${process.env.AUTH_BASE_URL}/api/users/login`, {
         data: {
             "user": {"email": "playwrightAutomation@testing.com", "password": "Pass1234"}
         },

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aleksandra-krstin/realworld-playwright-tests.git"
@@ -21,5 +21,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
 }

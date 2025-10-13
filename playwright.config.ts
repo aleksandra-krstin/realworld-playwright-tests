@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as dotenv from 'dotenv';
+
+dotenv.config(); //Loading .env variables into process.env
 
 /**
  * Read environment variables from file.
@@ -12,7 +15,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: '.',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -41,13 +44,20 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      use: {}
+      testMatch: 'auth.setup.ts'
     },
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'frontend',
+      testDir: './frontend',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json'},
+      dependencies: ['setup'],
     },
-
+        {
+      name: 'backend',
+      testDir: './backend',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json'},
+      dependencies: ['setup']
+    },
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },

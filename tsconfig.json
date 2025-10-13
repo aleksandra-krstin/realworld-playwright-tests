@@ -44,5 +44,5 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["tests", "utils", "fixtures"]
+  "include": ["tests", "utils", "fixtures", "backend/setup", "backend/utils/logger.ts", "backend/tests/article.spec.ts", "backend/tests/authentication.spec.ts", "backend/tests/comments.spec.ts", "backend/tests/tags.spec.ts", "backend/tests/user.spec.ts"]
 }
