@@ -30,12 +30,20 @@ jobs:
     - name: Clone backend repo
       run: |
         cd ${{ github.workspace }}/..
-        git clone https://github.com/aleksandra-krstin/node-express-realworld-example-app.git ../backend
+        git clone https://github.com/aleksandra-krstin/node-express-realworld-example-app.git backend
 
     - name: Clone frontend repo
       run: |
         cd ${{ github.workspace }}/..
-        git clone https://github.com/aleksandra-krstin/react-redux-realworld-example-app.git ../frontend
+        git clone https://github.com/aleksandra-krstin/react-redux-realworld-example-app.git frontend
+
+    - name: Check for Dockerfiles
+      run: |
+        cd ${{ github.workspace }}/..
+        find . -name Dockerfile
+
+    - name: Show directory tree
+      run: ls -R ${{ github.workspace }}/..
 
     - name: Verify directory structure
       run: ls -R ${{ github.workspace }}/..
