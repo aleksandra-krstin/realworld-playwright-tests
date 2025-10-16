@@ -1,4 +1,21 @@
 services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: realworld
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d realworld"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
   backend:
     build:
       context: ../backend
@@ -7,6 +24,8 @@ services:
       - "3001:3001"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/realworld
+      HOST: 0.0.0.0
+      PORT: 3000
     depends_on:
       db:
         condition: service_healthy
@@ -24,21 +43,5 @@ services:
       - backend
     restart: unless-stopped
 
-  db:
-    image: postgres:14
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: realworld
-    ports:
-      - "5432:5432"
-    volumes:                                 
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d realworld"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    restart: unless-stopped
-volumes:                                     
+volumes:
   postgres_data:
