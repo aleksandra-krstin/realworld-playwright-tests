@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "postinstall": "npx playwright install --with-deps"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aleksandra-krstin/realworld-playwright-tests.git"
