@@ -30,6 +30,7 @@ services:
       db:
         condition: service_healthy
     restart: unless-stopped
+    command: sh -c "npx prisma migrate deploy && node api"
 
   frontend:
     build:
